@@ -1,0 +1,117 @@
+﻿@page
+@model SacramentPlanner.Pages.SacramentPlans.IndexModel
+
+@{
+    ViewData["Title"] = "Sacrament Plans";
+}
+
+<h2>Sacrament Planner</h2>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.SacramentPlan[0].Date)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SacramentPlan[0].Conducting)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SacramentPlan[0].OpeningHymn)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SacramentPlan[0].OpeningPrayer)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SacramentPlan[0].SacramentHymn)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SacramentPlan[0].NumberSpeakers)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SacramentPlan[0].ClosingHymn)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SacramentPlan[0].ClosingPrayer)
+			</th>
+			<th></th>
+		</tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.SacramentPlan)
+{
+    string selectedRow = "";
+    if (item.SacramentPlanID == Model.SacramentPlanID)
+    {
+        selectedRow = "success";
+    }
+		<tr class="@selectedRow">
+			<td>
+				@Html.DisplayFor(modelItem => item.Date)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Conducting)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.OpeningHymn)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.OpeningPrayer)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.SacramentHymn)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.NumberSpeakers)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ClosingHymn)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ClosingPrayer)
+			</td>
+			<td>
+				<a asp-page="./Index" asp-route-id="@item.SacramentPlanID">Select</a> |
+				<a asp-page="./Edit" asp-route-id="@item.SacramentPlanID">Edit</a> |
+				<a asp-page="./Details" asp-route-id="@item.SacramentPlanID">Details</a> |
+				<a asp-page="./Delete" asp-route-id="@item.SacramentPlanID">Delete</a>
+			</td>
+		</tr>
+}
+    </tbody>
+</table>
+
+@if (Model.Speakers != null)
+{
+    <h3>Speakers</h3>
+    <a asp-page="../Speakers/Create" class="btn btn-primary" asp-route-SacramentPlanID="@Model.SacramentPlanID">Add New</a>
+    <br />
+    <br />
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Topic</th>
+            <th></th>
+        </tr>
+        @foreach(var speaker in Model.Speakers)
+        {
+            <tr>
+                <td>
+                    @speaker.Name
+                </td>
+                <td>
+                    @speaker.Topic
+                </td>
+                <td>
+                    <a asp-page="../Speakers/Edit" asp-route-id="@speaker.SpeakerID" asp-route-SacramentPlanID="@Model.SacramentPlanID">Edit</a> |
+                    <a asp-page="../Speakers/Details" asp-route-id="@speaker.SpeakerID">Details</a> |
+                    <a asp-page="../Speakers/Delete" asp-route-id="@speaker.SpeakerID">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+}

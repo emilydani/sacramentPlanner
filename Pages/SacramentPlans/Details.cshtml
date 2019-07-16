@@ -1,0 +1,87 @@
+﻿@page
+@model SacramentPlanner.Pages.SacramentPlans.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.SacramentPlan.SacramentPlanID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
+<h1>Sacrament Meeting</h1>
+<div>
+   
+@Html.DisplayFor(model => model.SacramentPlan.Date)
+</div>
+
+
+<div>
+
+    <hr />
+
+	<dl>
+
+
+
+		<dd>
+
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.SacramentPlan.Conducting)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.SacramentPlan.Conducting)
+		</dd>
+		<p><b>Announcements</b></p>
+		<dt>
+			@Html.DisplayNameFor(model => model.SacramentPlan.OpeningHymn)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.SacramentPlan.OpeningHymn)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.SacramentPlan.OpeningPrayer)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.SacramentPlan.OpeningPrayer)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.SacramentPlan.SacramentHymn)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.SacramentPlan.SacramentHymn)
+		</dd>
+		<p><b>Administration of the Sacrament</b></p>
+		<dt>
+			@Html.DisplayNameFor(model => model.SacramentPlan.NumberSpeakers)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.SacramentPlan.NumberSpeakers)
+		</dd>
+		@foreach (var speaker in Model.Speakers)
+		{
+			<dt>Speaker</dt>
+			<dd>
+				@speaker.Name
+			</dd>
+		}
+
+		<dt>
+			@Html.DisplayNameFor(model => model.SacramentPlan.ClosingHymn)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.SacramentPlan.ClosingHymn)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.SacramentPlan.ClosingPrayer)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.SacramentPlan.ClosingPrayer)
+		</dd>
+
+	</dl>
+</div>
+
